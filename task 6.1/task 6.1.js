@@ -9,7 +9,7 @@ let length = 0;
 
 
 //  Отримуємо довжину масиву
-while (length <= 0) {
+while (length <= 0 || isNaN(length)) {
   length = parseInt(prompt("Введи довжину масиву"));
   if (isNaN(length)) {
     alert("Це не число!");
