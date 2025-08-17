@@ -3,15 +3,15 @@
 Якщо користувач вводить більше ста, текст або цикл закінчує всі ітерації, то функція виводить в консоль останній введення користувача і завершує функцію.
 */
 
-function getNum(num) {
+function getNum() {
+  let num;
   for (let i = 0; i < 10; i++) {
-    num = Number(prompt("Введи число >100"));
+    num = prompt("Введи число >100");
     if (isNaN(num)) {
-      alert("Це не число, введи ще раз");
-      i--;
-      continue;
+      break;
     }
-    if (num < 100) {
+
+    if (num <= 100) {
       alert("введи ще раз");
     } else if (num > 100) {
       break;
