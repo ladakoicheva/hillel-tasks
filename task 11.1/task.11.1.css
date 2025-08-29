@@ -1,0 +1,96 @@
+body {
+  background: url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnVrem5yamFlZHV4czN6Y3Q1cHhmMWRydDgzdXR1NDdscHp0YzFkdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TxVVB6PfWMjE4/giphy.gif");
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 35px;
+  
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 80vw;
+  height: 50vh;
+  border: 3px solid #0ff;
+  box-shadow: 0 0 20px #0ff, 0 0 40px #0ff;
+  background-color: #111;
+}
+
+td,
+th {
+  border: 0.5px solid #0ff;
+  padding: 5px 10px;
+  text-align: center;
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+}
+
+tr:nth-child(odd) {
+  background-color: rgba(0, 255, 255, 0.1);
+}
+
+tr:nth-child(even) {
+  background-color: rgba(255, 0, 255, 0.1);
+}
+
+td:hover,
+th:hover {
+  background-color: rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 10px #0ff, 0 0 20px #0ff inset;
+}
+h1 {
+  font-family: 'Arial Black', sans-serif;
+  font-size: 3rem;
+  color: #0ff;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 1px;
+
+  
+  text-shadow: 
+     0 0 1px #0ff,
+     0 0 2px #0ff;
+
+  animation: neonPulse 1.5s infinite alternate;
+}
+
+@keyframes neonPulse {
+  0% {
+    text-shadow: 0 0 1px #0ff, 0 0 2px #0ff;
+  }
+  100% {
+    text-shadow: 0 0 1.5px #0ff, 0 0 3px #0ff;
+  }
+}
+
+
+select {
+  font-family: 'Arial Black', sans-serif;
+  font-size: 1.2rem;
+  color: #0ff; 
+  background-color: #111; 
+  border: 2px solid #0ff; 
+  border-radius: 8px;
+  padding: 8px 12px;
+  text-align: center;
+  text-shadow: 0 0 1px #0ff, 0 0 2px #0ff;
+  box-shadow: 0 0 5px #0ff inset, 0 0 10px #0ff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+select:hover {
+  color: #ff0;
+  border-color: #ff0;
+  box-shadow: 0 0 10px #ff0 inset, 0 0 20px #ff0;
+}
+
+
