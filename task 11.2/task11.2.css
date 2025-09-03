@@ -1,0 +1,9 @@
+.text {
+  color: black;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.text.colored {
+  color: #ff0055;
+  text-shadow: 0 0 5px #ff0055, 0 0 10px #ff0055;
+}
