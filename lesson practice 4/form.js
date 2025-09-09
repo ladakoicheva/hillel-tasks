@@ -56,9 +56,10 @@ getFormData = () => {
  
 
   //validation
-  function validateInput(selector, regex) {
+  function validateInput(selector, regex, minLength = 1) {
     const input = document.querySelector(selector);
-    const isValid = regex.test(input.value.trim());
+    const value = input.value.trim();
+    const isValid = regex.test(value) && value.length >= minLength;
     input.classList.toggle("invalid", !isValid);
     return isValid;
   }
@@ -66,7 +67,7 @@ getFormData = () => {
   const isNameValid = validateInput('input[name="name"]', nameRegex);
   const isSurnameValid = validateInput('input[name="surname"]', nameRegex);
   const isBirthdayValid = validateInput('input[name="birthdate"]', birthdateRegex);
-  const isAddressValid = validateInput('textarea[name="address"]', addressRegex);
+  const isAddressValid = validateInput('textarea[name="address"]', addressRegex,5);
 
   if (!isNameValid || !isSurnameValid || !isBirthdayValid || !isAddressValid) {
     form.classList.remove("hidden");
