@@ -1,48 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="form.css">
-  </head>
-  <body>
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-      </head>
-      <body>
-        <form>
-        <input class="name" type="text" name = "name" placeholder="Iмʼя" /><br />
-        <input class="surname" type="text" name = "surname"placeholder="Фамілія" /><br />
-        <input class="birthdate" type="text" name = "birthdate"placeholder="Дата народження" /><br />
-        <h3>Стать</h3>
-        <p><input type="radio" name = "gender" value="F" /> Female</p>
-        <p><input type="radio" name="gender" value ="M" />Male</p>
-        <p><input type="radio" name="gender" value ="N/A" />N/A</p>
-        <br />
-        <select name = 'city' >
-          <option value="ODS">Odessa</option>
-          <option value="KV">Kiev</option>
-          <option value="LV">Lviv</option></select
-        ><br />
-        <h3>Адреса</h3>
-        <textarea name="address"></textarea><br />
-        <h3>Якими мовами володієте?</h3>
-        <p><input name = "language"type="checkbox" value="ENG" />English</p>
-        <p><input name = "language"type="checkbox" value="SPN" />Spanish</p>
-        <p><input name = "language"type="checkbox" value="UKR" />Ukrainian</p>
-        <p><input name = "language"type="checkbox" value="GERM" />German</p>
-        <button class ="button"type="button">Save</button>
-        </form>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="form.css" />
+</head>
+<body>
+  <form>
+    <input class="name" type="text" name="name" placeholder="Iмʼя" /><br />
+    <input class="surname" type="text" name="surname" placeholder="Фамілія" /><br />
+    <input class="birthdate" type="text" name="birthdate" placeholder="Дата народження" /><br />
 
-        <table class="data"></table>
+    <h3>Стать</h3>
+    <p><input type="radio" name="gender" value="F" /> Female</p>
+    <p><input type="radio" name="gender" value="M" /> Male</p>
+    <p><input type="radio" name="gender" value="N/A" /> N/A</p>
+    <br />
 
-        <script src="form.js"></script>
-      </body>
-    </html>
-  </body>
+    <select name="city">
+      <option value="ODS">Odessa</option>
+      <option value="KV">Kiev</option>
+      <option value="LV">Lviv</option>
+    </select>
+    <br />
+
+    <h3>Адреса</h3>
+    <textarea name="address"></textarea><br />
+
+    <h3>Якими мовами володієте?</h3>
+    <p><input name="language" type="checkbox" value="ENG" /> English</p>
+    <p><input name="language" type="checkbox" value="SPN" /> Spanish</p>
+    <p><input name="language" type="checkbox" value="UKR" /> Ukrainian</p>
+    <p><input name="language" type="checkbox" value="GERM" /> German</p>
+
+    <button class="button" type="button">Save</button>
+  </form>
+
+  <table class="data"></table>
+
+  <script src="form.js"></script>
+</body>
 </html>

@@ -5,6 +5,8 @@ const languages = {
   UKR: "Ukrainian",
   GERM: "German",
 };
+
+
 const headers = [
   "Імʼя",
   "Прізвище",
@@ -12,9 +14,9 @@ const headers = [
   "Адреса",
   "Стать",
   "Місто",
-  
   "Мови",
 ];
+
 
 const formFields = [
   {
@@ -56,6 +58,7 @@ function getFormData() {
   const formData = {};
   let isValid = true;
 
+  
   formFields.forEach((field) => {
     const input = document.querySelector(field.selector);
     const value = input.value.trim();
@@ -93,9 +96,13 @@ function getFormData() {
 }
 
 function renderTable(formData) {
-  form.classList.add('hidden');
+
+  form.classList.add("hidden");
+
+
   data.innerHTML = "";
 
+ 
   const headerRow = document.createElement("tr");
   headers.forEach((text) => {
     const th = document.createElement("th");
@@ -104,11 +111,26 @@ function renderTable(formData) {
   });
   data.appendChild(headerRow);
 
+  
   const valueRow = document.createElement("tr");
-  for (let key in formData) {
+
+  
+  const headerToKey = {
+    Імʼя: "name",
+    Прізвище: "surname",
+    "Дата народження": "birthdate",
+    Адреса: "address",
+    Стать: "gender",
+    Місто: "city",
+    Мови: "languages",
+  };
+
+  headers.forEach((header) => {
     const td = document.createElement("td");
-    td.textContent = formData[key];
+    const key = headerToKey[header];
+    td.textContent = formData[key] || "";
     valueRow.appendChild(td);
-  }
+  });
+
   data.appendChild(valueRow);
 }
