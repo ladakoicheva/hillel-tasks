@@ -26,7 +26,7 @@ const saveButton = document.querySelector(".button");
 saveButton.addEventListener("click", (e) => {
   e.preventDefault();
   getFormData();
-  form.reset();
+  
 });
 
 getFormData = () => {
