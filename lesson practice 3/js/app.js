@@ -89,7 +89,8 @@ const showProductDetails = (product) => {
   });
 };
 
-function renderOrderForm(parent, product) {
+
+function createOrderForm(product) {
   const form = document.createElement("form");
   form.classList.add("order-form");
 
@@ -111,7 +112,7 @@ function renderOrderForm(parent, product) {
   form.appendChild(wrapInDiv(nameInput));
 
   const citySelect = document.createElement("select");
-  citySelect.name = "city"; 
+  citySelect.name = "city";
   ["Київ", "Одеса", "Львів"].forEach((city) => {
     const option = document.createElement("option");
     option.value = city;
@@ -129,7 +130,7 @@ function renderOrderForm(parent, product) {
   form.appendChild(wrapInDiv(warehouseInput));
 
   const paymentSelect = document.createElement("select");
-  paymentSelect.name = "payment"; 
+  paymentSelect.name = "payment";
   ["Накладений платіж", "Оплата на рахунок"].forEach((method) => {
     const option = document.createElement("option");
     option.value = method;
@@ -158,9 +159,15 @@ function renderOrderForm(parent, product) {
   submitBtn.textContent = "Замовити";
   form.appendChild(wrapInDiv(submitBtn));
 
-  parent.appendChild(form);
+  return form;
+}
 
-  // Валідація
+
+function validateOrderForm(form) {
+  let isValid = true;
+
+  form.querySelectorAll(".error-msg").forEach((el) => el.remove());
+
   const formFields = [
     {
       selector: "input[name='fullname']",
@@ -178,45 +185,55 @@ function renderOrderForm(parent, product) {
     },
   ];
 
+  formFields.forEach((field) => {
+    const input = form.querySelector(field.selector);
+    const value = input.value.trim();
+    const regex = new RegExp(field.regex);
+    if (!regex.test(value)) {
+      isValid = false;
+      const error = document.createElement("p");
+      error.className = "error-msg";
+      error.textContent = "Помилка: некоректні дані";
+      input.parentNode.appendChild(error);
+    }
+  });
+
+  return isValid;
+}
+
+
+function showOrderSummary(parent, product, orderData) {
+  parent.innerHTML = `
+    <h2>Дякуємо за покупку!</h2>
+    <p><strong>Товар:</strong> ${product.name} - $${product.price}</p>
+    <p><strong>ПІБ:</strong> ${orderData.fullname}</p>
+    <p><strong>Місто:</strong> ${orderData.city}</p>
+    <p><strong>Склад НП:</strong> ${orderData.warehouse}</p>
+    <p><strong>Оплата:</strong> ${orderData.payment}</p>
+    <p><strong>Кількість:</strong> ${orderData.quantity}</p>
+    <p><strong>Коментар:</strong> ${orderData.comment}</p>
+  `;
+}
+
+
+function renderOrderForm(parent, product) {
+  const form = createOrderForm(product);
+  parent.appendChild(form);
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    let isValid = true;
 
-    form.querySelectorAll(".error-msg").forEach((el) => el.remove());
-
-    formFields.forEach((field) => {
-      const input = form.querySelector(field.selector);
-      const value = input.value.trim();
-      const regex = new RegExp(field.regex);
-      if (!regex.test(value)) {
-        isValid = false;
-        const error = document.createElement("p");
-        error.className = "error-msg";
-        error.textContent = "Помилка: некоректні дані";
-        input.parentNode.appendChild(error);
-      }
-    });
-
-    if (isValid) {
+    if (validateOrderForm(form)) {
       const orderData = {
         fullname: form.fullname.value,
-        city: form.city.value, 
+        city: form.city.value,
         warehouse: form.warehouse.value,
-        payment: form.payment.value, 
+        payment: form.payment.value,
         quantity: form.quantity.value,
         comment: form.comment.value,
       };
 
-      parent.innerHTML = `
-        <h2>Дякуємо за покупку!</h2>
-        <p><strong>Товар:</strong> ${product.name} - $${product.price}</p>
-        <p><strong>ПІБ:</strong> ${orderData.fullname}</p>
-        <p><strong>Місто:</strong> ${orderData.city}</p>
-        <p><strong>Склад НП:</strong> ${orderData.warehouse}</p>
-        <p><strong>Оплата:</strong> ${orderData.payment}</p>
-        <p><strong>Кількість:</strong> ${orderData.quantity}</p>
-        <p><strong>Коментар:</strong> ${orderData.comment}</p>
-      `;
+      showOrderSummary(parent, product, orderData);
     }
   });
 }
