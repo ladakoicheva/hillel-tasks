@@ -33,7 +33,7 @@ let content = [
 
 let currentIndex = 0;
 let image, textElement, authorElement, jobElement, textBlock;
-let dots, prevBtn, nextBtn; 
+let dots, prevBtn, nextBtn;
 
 function updateSlide(index) {
   image.src = content[index].img;
@@ -42,7 +42,7 @@ function updateSlide(index) {
   jobElement.textContent = content[index].job;
 
   updateDots(index);
-  updateButtons(index); 
+  updateButtons(index);
 }
 
 function updateDots(index) {
@@ -51,14 +51,12 @@ function updateDots(index) {
 }
 
 function updateButtons(index) {
-  
   if (index === content.length - 1) {
     nextBtn.classList.add("hidden");
   } else {
     nextBtn.classList.remove("hidden");
   }
 
-  
   if (index === 0) {
     prevBtn.classList.add("hidden");
   } else {
@@ -66,19 +64,21 @@ function updateButtons(index) {
   }
 }
 
-function generateContent() {
+function initElements() {
   image = document.querySelector(".img");
   nextBtn = document.querySelector(".next");
   prevBtn = document.querySelector(".prev");
   textBlock = document.querySelector(".text-content");
+}
+function createAndAppendTextElements() {
   textElement = document.createElement("p");
   authorElement = document.createElement("h3");
   jobElement = document.createElement("p");
-
   textBlock.appendChild(textElement);
   textBlock.appendChild(authorElement);
   textBlock.appendChild(jobElement);
-
+}
+function setupDots() {
   let dotsContainer = document.querySelector(".dots");
 
   content.forEach((_, i) => {
@@ -92,9 +92,8 @@ function generateContent() {
   });
 
   dots = document.querySelectorAll(".dot");
-
-  updateSlide(currentIndex);
-
+}
+function setupButtons() {
   nextBtn.addEventListener("click", () => {
     currentIndex = currentIndex + 1;
     updateSlide(currentIndex);
@@ -104,6 +103,15 @@ function generateContent() {
     currentIndex = currentIndex - 1;
     updateSlide(currentIndex);
   });
+}
+
+function generateContent() {
+  initElements();
+  createAndAppendTextElements();
+  setupDots();
+  setupButtons();
+
+  updateSlide(currentIndex);
 }
 
 generateContent();
