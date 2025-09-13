@@ -1,7 +1,7 @@
 const taskList = document.querySelector(".list");
 const taskInput = document.querySelector(".task");
 const addTaskBtn = document.querySelector(".add");
-tasks = [];
+let tasks = [];
 
 function renderTasks() {
   taskList.innerHTML = "";
