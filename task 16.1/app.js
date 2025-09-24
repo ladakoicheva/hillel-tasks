@@ -1,60 +1,61 @@
 function Student(name, surname, birthYear) {
-  //personal info
   this.name = name;
   this.surname = surname;
   this.birthYear = birthYear;
-  this.age = () => {
-    const date = new Date();
-    return date.getFullYear() - this.birthYear;
-  };
-
-  //academic performance
-  const grades = [];
-  this.getAverageGrade = function () {
-    if (grades.length === 0) {
-      return 0;
-    }
-    const sum = grades.reduce((acc, el) => acc + el, 0);
-    return sum / grades.length;
-  };
-  this.setGrade = function (grade) {
-    grades.push(grade);
-  };
-
-  //attendance
-
-  let attendance = new Array(25).fill(null);
-  let attendanceIndex = 0;
-
-  this.present = function () {
-    if (attendanceIndex < 25) {
-      attendance[attendanceIndex] = true;
-      attendanceIndex++;
-    } else {
-      console.log("ні.вже канікули,який унік?");
-    }
-  };
-  this.absent = function () {
-    if (attendanceIndex < 25) {
-      attendance[attendanceIndex] = false;
-      attendanceIndex++;
-    } else {
-      console.log("ні.вже канікули,який унік?");
-    }
-  };
-  //summary
-  this.summary = function () {
-    let attendanceCoef = attendance.filter(Boolean).length / attendanceIndex;
-    let aveGrade = this.getAverageGrade();
-    if (attendanceCoef >= 0.9 && aveGrade >= 90) {
-      return "Молодець";
-    } else if (attendanceCoef >= 0.9 || aveGrade >= 90) {
-      return "Добре, але можна краще";
-    } else {
-      return "Редиска!";
-    }
-  };
+  this.grades = [];
+  this.attendance = new Array(25).fill(null);
+  this.attendanceIndex = 0;
 }
+
+
+Student.prototype.age = function () {
+  const date = new Date();
+  return date.getFullYear() - this.birthYear;
+};
+
+Student.prototype.getAverageGrade = function () {
+  if (this.grades.length === 0) {
+    return 0;
+  }
+  const sum = this.grades.reduce((acc, el) => acc + el, 0);
+  return sum / this.grades.length;
+};
+
+Student.prototype.setGrade = function (grade) {
+  this.grades.push(grade);
+};
+
+Student.prototype.present = function () {
+  if (this.attendanceIndex < 25) {
+    this.attendance[this.attendanceIndex] = true;
+    this.attendanceIndex++;
+  } else {
+    console.log("Ні. Вже канікули, який унік?");
+  }
+};
+
+Student.prototype.absent = function () {
+  if (this.attendanceIndex < 25) {
+    this.attendance[this.attendanceIndex] = false;
+    this.attendanceIndex++;
+  } else {
+    console.log("Ні. Вже канікули, який унік?");
+  }
+};
+
+Student.prototype.summary = function () {
+  const attendanceCoef =
+    this.attendance.filter(Boolean).length / this.attendanceIndex;
+  const aveGrade = this.getAverageGrade();
+  if (attendanceCoef >= 0.9 && aveGrade >= 90) {
+    return "Молодець";
+  } else if (attendanceCoef >= 0.9 || aveGrade >= 90) {
+    return "Добре, але можна краще";
+  } else {
+    return "Редиска!";
+  }
+};
+
 //Some examples
 
 const student1 = new Student("Іван", "Коваль", 2000);
