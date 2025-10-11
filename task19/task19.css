@@ -1,0 +1,239 @@
+/* ===============================
+   Обнуление стилей
+================================*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.4;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  background-color: #01010b;
+  font-family: "Inter", sans-serif;
+  color: aliceblue;
+  scroll-behavior: smooth;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.planets li,
+.people li,
+.vehicles li {
+  background-color: #34476B;
+  color: #01010b;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+}
+
+.planets li:hover,
+.people li:hover,
+.vehicles li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+}
+
+.image {
+  width: 40vw;
+  margin: 0 auto;
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+}
+
+.image img {
+  width: 100%;
+  display: block;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.menu {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.menu p {
+  cursor: pointer;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #fff;
+  transition: color 0.3s ease, transform 0.2s ease;
+  position: relative;
+}
+
+.menu p::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #ffe082;
+  transition: width 0.3s ease;
+}
+
+.menu p:hover {
+  color: #ffe082;
+  transform: scale(1.05);
+}
+
+.menu p:hover::after {
+  width: 100%;
+}
+
+h1 {
+  margin: 30px auto;
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: #ffe082;
+  font-family: "Irish Grover", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    gap: 15px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .image {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+}
+
+.loadBtn{
+  background-color: #4E6591;
+  color: white;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+.loadBtn:hover{
+  background-color: #6b81b4;
+}
