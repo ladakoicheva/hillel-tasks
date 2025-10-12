@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <button
+      type="button"
+      data-bs-toggle="tooltip"
+      data-bs-title="A modal will open"
+      class="btn btn-outline-primary"
+    >
+      Click me!
+    </button>
+    <button
+      type="button"
+      data-bs-toggle="tooltip"
+      data-bs-title="I am not joking"
+      class="btn btn-warning"
+      id = "alert"
+    >
+      DO NOT TOUCH!
+    </button>
+    <div class="modal" id="myModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="alert alert-info mt-3 d-none" role="alert" id="myJsAlert"><p class = "text">Oh no!You Clicked that button!Click again to close</p></div>
+ 
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="node_modules/moment/min/moment.min.js"></script>
+    <script src="task.20.1.js"></script>
+  </body>
+</html>
