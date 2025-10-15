@@ -1,60 +1,64 @@
-
 const entities = {
   people: {
     url: "https://swapi.dev/api/people/",
+    nextUrl: null,
     list: document.querySelector(".people ul"),
     section: document.querySelector(".people"),
   },
   planets: {
     url: "https://swapi.dev/api/planets/",
+    nextUrl: null,
     list: document.querySelector(".planets ul"),
     section: document.querySelector(".planets"),
   },
   vehicles: {
     url: "https://swapi.dev/api/vehicles/",
+    nextUrl: null,
     list: document.querySelector(".vehicles ul"),
     section: document.querySelector(".vehicles"),
   },
 };
 
-function loadData(link, parent) {
-  parent.innerHTML = " ";
-   const oldButton = parent.parentElement.querySelector(".loadBtn");
-   if (oldButton) {
-     oldButton.remove();
-   }
-  fetch(link)
+function loadData(entity) {
+  const urlToFetch = entity.nextUrl || entity.url;
+  const oldButton = entity.section.querySelector(".loadBtn");
+  if (oldButton) {
+    oldButton.remove();
+  }
+  fetch(urlToFetch)
     .then((res) => res.json())
     .then((result) => {
-      showContent(result.results, parent);
+     
+      showContent(result.results, entity.list);
 
-      console.log(link);
+      entity.nextUrl = result.next;
 
-      link = result.next;
-      
-      if (result.next) {
+      if (entity.nextUrl) {
+        let button = document.createElement("button");
+        button.classList.add("loadBtn");
+        button.textContent = "Load More";
         
-        let button = document.createElement('button');
-        button.classList.add('loadBtn');
-        button.textContent='Load More';
-        parent.parentElement.appendChild(button);
+        entity.section.appendChild(button);
 
-        button.addEventListener('click', ()=> {
-          loadData(link, parent);
-        })
-       
-      } 
+        button.addEventListener("click", () => {
+          loadData(entity);
+        });
+      }
     });
 }
 
-function showContent(data, parent) {
+
+function showContent(data, parentList) {
   data.forEach((item) => {
     const element = document.createElement("li");
     element.textContent = item.name;
-    parent.appendChild(element);
+    
+    parentList.appendChild(element);
   });
 }
+
 function setActiveSection(activeSection) {
+  
   if (activeSection === "people") {
     entities.people.section.style.display = "block";
     entities.planets.section.style.display = "none";
@@ -70,15 +74,24 @@ function setActiveSection(activeSection) {
   }
 }
 
+
 document.querySelector(".people-endpoint").addEventListener("click", () => {
   setActiveSection("people");
-  loadData(entities.people.url, entities.people.list);
+  entities.people.list.innerHTML = ""; 
+  entities.people.nextUrl = null; 
+  loadData(entities.people);
 });
+
 document.querySelector(".planets-endpoint").addEventListener("click", () => {
   setActiveSection("planets");
-  loadData(entities.planets.url, entities.planets.list);
+  entities.planets.list.innerHTML = "";
+  entities.planets.nextUrl = null;
+  loadData(entities.planets);
 });
+
 document.querySelector(".vehicles-endpoint").addEventListener("click", () => {
   setActiveSection("vehicles");
-  loadData(entities.vehicles.url, entities.vehicles.list);
+  entities.vehicles.list.innerHTML = "";
+  entities.vehicles.nextUrl = null;
+  loadData(entities.vehicles);
 });
