@@ -1,12 +1,21 @@
-let peopleUrl = "https://swapi.dev/api/people/";
-let planetsUrl = "https://swapi.dev/api/planets/";
-let vehiclesUrl = "https://swapi.dev/api/vehicles/";
-let peopleList = document.querySelector(".people ul");
-let planetsList = document.querySelector(".planets ul");
-let vehiclesList = document.querySelector(".vehicles ul");
-const peopleSection = document.querySelector(".people");
-const planetsSection = document.querySelector(".planets");
-const vehiclesSection = document.querySelector(".vehicles");
+
+const entities = {
+  people: {
+    url: "https://swapi.dev/api/people/",
+    list: document.querySelector(".people ul"),
+    section: document.querySelector(".people"),
+  },
+  planets: {
+    url: "https://swapi.dev/api/planets/",
+    list: document.querySelector(".planets ul"),
+    section: document.querySelector(".planets"),
+  },
+  vehicles: {
+    url: "https://swapi.dev/api/vehicles/",
+    list: document.querySelector(".vehicles ul"),
+    section: document.querySelector(".vehicles"),
+  },
+};
 
 function loadData(link, parent) {
   parent.innerHTML = " ";
@@ -47,29 +56,29 @@ function showContent(data, parent) {
 }
 function setActiveSection(activeSection) {
   if (activeSection === "people") {
-    peopleSection.style.display = "block";
-    planetsSection.style.display = "none";
-    vehiclesSection.style.display = "none";
+    entities.people.section.style.display = "block";
+    entities.planets.section.style.display = "none";
+    entities.vehicles.section.style.display = "none";
   } else if (activeSection === "planets") {
-    peopleSection.style.display = "none";
-    planetsSection.style.display = "block";
-    vehiclesSection.style.display = "none";
+    entities.people.section.style.display = "none";
+    entities.planets.section.style.display = "block";
+    entities.vehicles.section.style.display = "none";
   } else if (activeSection === "vehicles") {
-    peopleSection.style.display = "none";
-    planetsSection.style.display = "none";
-    vehiclesSection.style.display = "block";
+    entities.people.section.style.display = "none";
+    entities.planets.section.style.display = "none";
+    entities.vehicles.section.style.display = "block";
   }
 }
 
 document.querySelector(".people-endpoint").addEventListener("click", () => {
   setActiveSection("people");
-  loadData(peopleUrl, peopleList);
+  loadData(entities.people.url, entities.people.list);
 });
 document.querySelector(".planets-endpoint").addEventListener("click", () => {
   setActiveSection("planets");
-  loadData(planetsUrl, planetsList);
+  loadData(entities.planets.url, entities.planets.list);
 });
 document.querySelector(".vehicles-endpoint").addEventListener("click", () => {
   setActiveSection("vehicles");
-  loadData(vehiclesUrl, vehiclesList);
+  loadData(entities.vehicles.url, entities.vehicles.list);
 });
