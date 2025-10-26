@@ -1,6 +1,10 @@
 {
   "dependencies": {
+    "@babel/cli": "^7.28.3",
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
     "bootstrap": "^5.3.8",
     "moment": "^2.30.1"
   }
+ 
 }
