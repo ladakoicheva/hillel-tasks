@@ -1,3 +1,6 @@
+import './styles.scss';
+import './img/starWars.jpg';
+
 const entities = {
   people: {
     url: "https://swapi.dev/api/people/",

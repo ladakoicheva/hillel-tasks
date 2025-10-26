@@ -1,0 +1,289 @@
+
+// Colors
+$bg-dark: #01010b;
+$text-light: aliceblue;
+$text-dark: #01010b;
+$card-bg: #34476B;
+$color-white: #fff;
+$color-accent: #ffe082;
+$btn-bg: #4E6591;
+$btn-bg-hover: #6b81b4;
+
+// Shadows (using variables for consistency)
+$shadow-light: rgba(255, 255, 255, 0.1);
+$shadow-medium: rgba(255, 255, 255, 0.25);
+
+// Fonts
+$font-main: "Inter", sans-serif;
+$font-heading: "Irish Grover", system-ui;
+
+
+/* ===============================
+   2. Placeholder Selector (@extend)
+   Creates a reusable "template" for styles.
+   We use this for the identical list items.
+================================*/
+%list-item-base {
+  background-color: $card-bg;
+  color: $text-dark;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px $shadow-light;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  // Nesting :hover using the parent selector '&'
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 12px $shadow-medium;
+  }
+}
+
+
+/* ===============================
+   3. Обнуление стилей (Reset)
+   Using nesting for cleaner selectors.
+================================*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+
+  // Nesting pseudo-elements
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+  
+  &:visited {
+    // These rules were redundant in the CSS,
+    // but we keep them for logical grouping.
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.4;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  background-color: $bg-dark; // Use variable
+  font-family: $font-main;  // Use variable
+  color: $text-light;      // Use variable
+  scroll-behavior: smooth;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+
+/* ===============================
+   4. Стили компонентов (Component Styles)
+   Using nesting for component logic.
+================================*/
+.wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+// Using @extend to apply the placeholder styles
+.planets,
+.people,
+.vehicles {
+  li {
+    @extend %list-item-base;
+  }
+}
+
+.image {
+  width: 40vw;
+  margin: 0 auto;
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 15px $shadow-light;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 25px $shadow-medium;
+  }
+
+  // Child selectors are nested inside the parent
+  img {
+    width: 100%;
+    display: block;
+  }
+
+  // 5. Nested Media Queries
+  // The media query is now *inside* the component
+  // it affects, making it easier to find.
+  @media (max-width: 768px) {
+    width: 80vw;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  border-bottom: 1px solid $shadow-light;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.menu {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+
+  p {
+    cursor: pointer;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: $color-white;
+    transition: color 0.3s ease, transform 0.2s ease;
+    position: relative;
+
+    // Nesting pseudo-elements
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: $color-accent;
+      transition: width 0.3s ease;
+    }
+
+    // Nesting pseudo-classes
+    &:hover {
+      color: $color-accent;
+      transform: scale(1.05);
+
+      // Nesting rules that apply on hover
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  // Nested media queries for .menu
+  @media (max-width: 768px) {
+    gap: 15px;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+h1 {
+  margin: 30px auto;
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: $color-accent;
+  font-family: $font-heading;
+  font-weight: 400;
+  font-style: normal;
+
+  // Nested media queries for h1
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
+}
+
+.loadBtn {
+  background-color: $btn-bg;
+  color: $color-white;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: $btn-bg-hover;
+  }
+}
