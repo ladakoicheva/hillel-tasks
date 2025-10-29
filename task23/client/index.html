@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мій Todo Список</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <div class='header'>
+                <h1>Мій список завдань (Todos)</h1>
+            </div>
+        </header>
+
+        <main>
+            <section class="form-section">
+                <h2>Додати нове завдання</h2>
+                <form id="todo-form">
+                    
+                    <div>
+                        <label for="task-title">Назва завдання:</label>
+                        <input type="text" id="task-title" placeholder="Наприклад, 'Купити молоко'" required>
+                    </div>
+
+                    <div>
+                        <label for="task-description">Опис:</label>
+                        <textarea id="task-description" placeholder="Деталі завдання... (необов'язково)"></textarea>
+                    </div>
+
+                    <div>
+                        <label for="task-priority">Пріоритет:</label>
+                        <select id="task-priority">
+                            <option value="low">Низький</option>
+                            <option value="medium" selected>Середній</option>
+                            <option value="high">Високий</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="task-status">Статус:</label>
+                        <select id="task-status">
+                            <option value="todo" selected>В очікуванні</option>
+                            <option value="in-progress">В роботі</option>
+                            <option value="done">Виконано</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">Додати завдання</button>
+                </form>
+            </section>
+            
+            <hr style="margin: 30px 0;">
+
+            <section class="tasks">
+                <h2>Список завдань</h2>
+                <ul id="task-list">
+                   </ul>
+            </section> </main>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
